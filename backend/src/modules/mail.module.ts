@@ -8,9 +8,7 @@ import { MailService } from 'src/services/mail.service';
     MongooseModule.forFeature([{ name: Mail.name, schema: MailSchema }]),
   ],
   controllers: [],
-  providers: [
-    MailService,
-  ],
-  exports: [MailService], 
+  providers: [MailService],
+  exports: [MailService],
 })
 export class MailModule {}

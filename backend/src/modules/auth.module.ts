@@ -6,6 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 
 import { UserModule } from './user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { RabbitMQModule } from './rabbitmq.module';
 
 @Module({
   imports: [
@@ -18,12 +19,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
     }),
     UserModule,
+    RabbitMQModule,
   ],
   controllers: [AuthController],
   providers: [
+    AuthService,
     {
       provide: AuthAbstract,
-      useClass: AuthService,
+      useExisting: AuthService,
     },
   ],
   exports: [AuthAbstract, JwtModule],

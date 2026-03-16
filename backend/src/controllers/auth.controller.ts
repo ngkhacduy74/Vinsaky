@@ -12,8 +12,6 @@ import { AuthAbstract } from 'src/abstracts/auth.abstract';
 import { LoginDto } from 'src/dtos/request/auth/login.dto';
 import { RegisterDto } from 'src/dtos/request/auth/register.dto';
 import { RefreshTokenDto } from 'src/dtos/request/auth/refresh-token.dto';
-import { JwtAuthGuard } from 'src/guard/permission.guard';
-import { AuthService } from 'src/services/auth.service';
 
 @Controller('auth')
 export class AuthController {

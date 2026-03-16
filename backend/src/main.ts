@@ -3,6 +3,7 @@ import { AppModule } from './modules/app.module';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { AllExceptionsFilter } from './filters/http-exception.filter';
 import helmet from 'helmet';
+import { RabbitMQService } from './configs/rabbitmq.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -28,6 +29,7 @@ async function bootstrap() {
   const allowedOrigins = [
     'http://localhost:3000',
     'http://localhost:4000',
+    'http://localhost:5173',
     'https://exe-frontend-ou98.onrender.com',
     'https://vinsaky.com',
     'https://www.vinsaky.com',
@@ -69,8 +71,8 @@ async function bootstrap() {
     }),
   );
 
- const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 3000;
 
-await app.listen(port, '0.0.0.0');
+  await app.listen(port, '0.0.0.0');
 }
 bootstrap();

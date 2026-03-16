@@ -23,6 +23,7 @@ import { DashboardModule } from './dasboard.module';
 import { PostModule } from './post.module';
 import { OrdersModule } from './order.module';
 import { MailModule } from './mail.module';
+import { RabbitMQModule } from './rabbitmq.module';
 
 @Module({
   imports: [
@@ -46,8 +47,10 @@ import { MailModule } from './mail.module';
     UploadsModule,
     ProductModule,
     DashboardModule,
-    PostModule,MailModule,
+    PostModule,
+    MailModule,
     OrdersModule,
+    RabbitMQModule,
   ],
   controllers: [],
   providers: [

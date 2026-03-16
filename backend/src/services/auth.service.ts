@@ -18,13 +18,15 @@ import {
   RegisterDto,
   RegisterResponse,
 } from 'src/dtos/request/auth/register.dto';
-import { User } from 'src/schemas/user.schema';
+import { EmailProducer } from './producers/email.producer';
+import { welcomeRegisterEmail } from 'src/common/shared/function/register-email-template';
 
 @Injectable()
 export class AuthService implements AuthAbstract {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly jwtService: JwtService,
+    private readonly emailProducer: EmailProducer,
   ) {}
 
   async login(data: LoginDto): Promise<BaseResponseDto<LoginResponse>> {
@@ -139,7 +141,12 @@ export class AuthService implements AuthAbstract {
         isPremium: created.isPremium,
         postCount: created.postCount,
       };
-
+      const email = welcomeRegisterEmail(created);
+      await this.emailProducer.sendEmailJob({
+        email: created.email,
+        subject: 'Welcome to system',
+        html: email,
+      });
       return {
         success: true,
         data: {
@@ -201,7 +208,7 @@ export class AuthService implements AuthAbstract {
         },
         { expiresIn: '30m' },
       );
-      
+
       const newRefreshToken = this.jwtService.sign(
         {
           user: {
