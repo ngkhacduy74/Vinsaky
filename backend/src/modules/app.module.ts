@@ -7,26 +7,28 @@ import {
 
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { AuthModule } from './auth.module';
-import { AuthService } from '../services/auth.service';
+
+import { AuthService } from './auth/application/auth.service';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 
 import { LoggerMiddleware } from '../middleware/logging.middleware';
 import { TransformInterceptor } from '../interceptors/response.interceptor';
 import { LoggingInterceptor } from '../interceptors/logging.interceptor';
-import { AuthController } from '../controllers/auth.controller';
-import { UserModule } from './user.module';
-import { UploadsModule } from './upload.module';
-import { ProductModule } from './product.module';
-import { DashboardModule } from './dasboard.module';
-import { PostModule } from './post.module';
-import { OrdersModule } from './order.module';
-import { MailModule } from './mail.module';
+import { AuthController } from './auth/presentation/auth.controller';
+import { UserModule } from './user/user.module';
+import { UploadsModule } from './upload/upload.module';
+import { ProductModule } from './product/product.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { PostModule } from './post/post.module';
+import { MailModule } from './mail/mail.module';
+import { BannerModule } from './banner/banner.module';
 import { RabbitMQModule } from './rabbitmq.module';
 import { BullMQModule } from './bullmq.module';
 import { BullModule } from '@nestjs/bullmq';
 import { PrometheusModule } from '@willsoto/nestjs-prometheus';
+import { AuthModule } from './auth/auth.module';
+import { OrdersModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -62,8 +64,9 @@ import { PrometheusModule } from '@willsoto/nestjs-prometheus';
     ProductModule,
     DashboardModule,
     PostModule,
-    MailModule,
+    BannerModule,
     OrdersModule,
+
     // RabbitMQModule,
   ],
   controllers: [],

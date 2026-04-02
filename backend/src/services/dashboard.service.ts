@@ -1,10 +1,10 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { DashboardRepository } from 'src/repositories/dashboard.repositories';
 import { BaseResponseDto } from 'src/common/dto/base-response.dto';
+import { DashboardRepoAbstract } from 'src/modules/dashboard/domain/repositories/dashboard.repositories';
 
 @Injectable()
 export class DashboardService {
-  constructor(private readonly dashboardRepo: DashboardRepository) {}
+  constructor(private readonly dashboardRepo: DashboardRepoAbstract) {}
 
   async getDashboardStats(): Promise<BaseResponseDto<any>> {
     try {

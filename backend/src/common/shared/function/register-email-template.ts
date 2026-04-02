@@ -1,4 +1,4 @@
-import { User } from 'src/schemas/user.schema';
+import { User } from 'src/modules/user/infrastructure/database/user.schema';
 
 export function welcomeRegisterEmail(user: User) {
   const name = user?.fullname ?? 'Bạn';

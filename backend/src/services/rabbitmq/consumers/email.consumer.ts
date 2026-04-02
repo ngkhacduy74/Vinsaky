@@ -2,8 +2,8 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
 import * as amqp from 'amqplib';
 import { RabbitMQService } from 'src/configs/rabbitmq.config';
 
-import { MailType } from 'src/schemas/mail.schema';
-import { MailService } from 'src/services/mail.service';
+import { MailType } from 'src/modules/mail/domain/entities/mail.entity';
+import { MailService } from 'src/modules/mail/application/mail.service';
 
 @Injectable()
 export class EmailConsumer implements OnModuleInit {
